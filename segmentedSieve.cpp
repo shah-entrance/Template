@@ -1,8 +1,3 @@
-#pragma GCC optimize("Ofast")
-#pragma GCC target("avx,avx2,fma")
-#include<bits/stdc++.h>
-using namespace std;
-typedef long long int ll;
 vector<int> ans;
 void simpleSieve(int limit, vector<int> &prime){
     bool mark[limit + 1];
@@ -44,11 +39,5 @@ void segmentedSieve(int n){
         low = low + limit;
         high = high + limit;
     }
-}
-int main(){
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);cout.tie(0);
-
-    return 0;
 }
 
