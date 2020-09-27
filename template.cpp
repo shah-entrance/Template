@@ -434,6 +434,36 @@ string add(string str1,string str2){
     reverse(str.begin(), str.end());
     return str;
 }
+string mul(string num1, string num2){
+    ll len1 = num1.size(), len2 = num2.size();
+    if (len1 == 0 || len2 == 0)
+        return "0";
+    vector<ll> result(len1 + len2, 0);
+    ll i_n1 = 0, i_n2 = 0;
+    for (ll i=len1-1; i>=0; i--){
+        ll carry = 0, n1 = num1[i] - '0';
+        i_n2 = 0;
+        for (ll j=len2-1; j>=0; j--){
+            ll n2 = num2[j] - '0';
+            ll sum = n1*n2 + result[i_n1 + i_n2] + carry;
+            carry = sum/10;
+            result[i_n1 + i_n2] = sum % 10;
+            i_n2++;
+        }
+        if (carry > 0)
+            result[i_n1 + i_n2] += carry;
+        i_n1++;
+    }
+    ll i = result.size() - 1;
+    while (i>=0 && result[i] == 0)
+        i--;
+    if (i == -1)
+        return "0";
+    string s = "";
+    while (i >= 0)
+        s += std::to_string(result[i--]);
+    return s;
+}
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(0);cout.tie(0);
